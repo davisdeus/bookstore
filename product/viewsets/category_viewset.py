@@ -7,5 +7,5 @@ from product.serializers.category_serializer import CategorySerializer
 
 class CategoryViewSet(ModelViewSet):
     permission_classes = [AllowAny]
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by("-id")
     serializer_class = CategorySerializer
