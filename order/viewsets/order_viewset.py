@@ -7,5 +7,5 @@ from order.serializers import OrderSerializer
 
 class OrderViewSet(ModelViewSet):
     permission_classes = [AllowAny]
-    queryset = Order.objects.all()
+    queryset = Order.objects.all().order_by("-id")
     serializer_class = OrderSerializer
