@@ -1,11 +1,10 @@
-from urllib import response
+from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework.test import APITestCase, APIClient
 from django.urls import reverse
 
 from product.factories import CategoryFactory, ProductFactory
 from order.factories import UserFactory, OrderFactory
-from product.models import Product
 from order.models import Order
 import json
 
@@ -14,6 +13,11 @@ class TestOrderViewSet(APITestCase):
     client = APIClient()
 
     def setUp(self):
+        self.user = UserFactory()
+        token = Token.objects.create(user=self.user)
+        
+        self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
+
         self.category = CategoryFactory(title="technology")
         self.product = ProductFactory(
             title="mouse", price=100, category=[self.category]
