@@ -15,7 +15,7 @@ class TestOrderViewSet(APITestCase):
     def setUp(self):
         self.user = UserFactory()
         token = Token.objects.create(user=self.user)
-        
+
         self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
 
         self.category = CategoryFactory(title="technology")
