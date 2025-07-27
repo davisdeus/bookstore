@@ -27,9 +27,7 @@ class CategoryViewSet(APITestCase):
         # self.assertEqual(product_data[0]["active"], self.product.active)
 
     def test_create_category(self):
-        data = json.dumps(
-            {"title": "technology"}
-        )
+        data = json.dumps({"title": "technology"})
 
         response = self.client.post(
             reverse("category-list", kwargs={"version": "v1"}),
@@ -40,7 +38,7 @@ class CategoryViewSet(APITestCase):
         # import pdb; pdb.set_trace()
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        
+
         created_category = Category.objects.get(title="technology")
 
         self.assertEqual(created_category.title, "technology")
