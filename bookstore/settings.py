@@ -5,7 +5,7 @@ from decouple import AutoConfig
 BASE_DIR = Path(__file__).resolve().parent.parent
 config = AutoConfig(search_path=BASE_DIR)
 
-SECRET_KEY = config("SECRET_KEY")  # 👈 Usa o valor do .env
+SECRET_KEY = config("SECRET_KEY", default="dummy-secret")# 👈 Usa o valor do .env
 DEBUG = config("DEBUG", default=False, cast=bool)  # 👈 Converte corretamente para bool
 
 ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS").split(" ")  # 👈 Quebra em lista
