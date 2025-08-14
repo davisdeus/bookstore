@@ -1,5 +1,7 @@
 # Set this to ~use it everywhere in the project setup
-PYTHON_VERSION ?= 3.8.10
+PYTHON_VERSION ?= 3.13
+start:
+    poetry shell
 # the directories containing the library modules this repo builds
 LIBRARY_DIRS = mylibrary
 # build artifacts organized in this Makefile
