@@ -30,8 +30,11 @@ jobs:
       run:  poetry --help
 
     - name: Install dependencies
-      shell: pwsh
-      run: python -m poetry install
+      run: poetry install
+    
+    - name: Check installed packages
+      run: poetry show
+
 
     - name: Test
       env:
