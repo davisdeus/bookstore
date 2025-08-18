@@ -49,6 +49,13 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+import sys
+
+# Evita carregar a Debug Toolbar durante testes
+if DEBUG and not any(arg in sys.argv for arg in ["test", "pytest"]):
+    INSTALLED_APPS += ["debug_toolbar"]
+    MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+
 ROOT_URLCONF = "bookstore.urls"
 
 TEMPLATES = [
