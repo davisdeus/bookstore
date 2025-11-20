@@ -21,7 +21,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "order",
     "product",
-    "debug_toolbar",
     "rest_framework.authtoken",
 ]
 
@@ -33,7 +32,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 import sys
@@ -42,6 +40,11 @@ import sys
 if DEBUG and not any(arg in sys.argv for arg in ["test", "pytest"]):
     INSTALLED_APPS += ["debug_toolbar"]
     MIDDLEWARE += ["debug_toolbar.middleware.DebugToolbarMiddleware"]
+
+DEBUG_TOOLBAR_CONFIG = {
+    "SHOW_TOOLBAR_CALLBACK": lambda request: DEBUG,
+    "IS_RUNNING_TESTS": any(arg in sys.argv for arg in ["test", "pytest"]),
+}
 
 ROOT_URLCONF = "bookstore.urls"
 
